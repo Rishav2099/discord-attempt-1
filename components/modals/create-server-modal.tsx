@@ -24,8 +24,9 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { FileUpload } from "../file-upload";
 import { useRouter } from "next/navigation";
+import { useModal } from "@/hooks/use-modal-store";
 
-export const InitialModal = () => {
+export const CreateServerModal = () => {
   const router = useRouter();
   const formSchema = z.object({
     name: z.string().min(1, "Name is required"),
@@ -40,7 +41,11 @@ export const InitialModal = () => {
     },
   });
 
+  const { isOpen, type, onClose } = useModal();
+
   const isLoading = form.formState.isSubmitting;
+
+  const isModalOpen = isOpen && type === "createServer";
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
@@ -48,14 +53,19 @@ export const InitialModal = () => {
 
       form.reset();
       router.refresh();
-      window.location.reload();
+      onClose();
     } catch (error) {
       console.log(error);
     }
   };
 
+  const handleClose = () => {
+    form.reset();
+    onClose();
+  };
+
   return (
-    <Dialog open>
+    <Dialog open={isModalOpen} onOpenChange={handleClose}>
       <DialogContent
         className="bg-white text-black p-0 overflow-hidden"
         style={{
@@ -127,5 +137,3 @@ export const InitialModal = () => {
     </Dialog>
   );
 };
-
-export default InitialModal;
