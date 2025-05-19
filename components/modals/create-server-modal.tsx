@@ -94,11 +94,11 @@ export const CreateServerModal = () => {
                     <FormItem>
                       <FormLabel>Server Image</FormLabel>
                       <FormControl>
-                        <FileUpload
+                        {/* <FileUpload
                           endpoint="serverImage"
                           value={field.value}
                           onChange={field.onChange}
-                        />
+                        /> */}
                       </FormControl>
                       <FormMessage />
                     </FormItem>
