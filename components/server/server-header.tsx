@@ -79,4 +79,4 @@ export const ServerHeader = ({ server, role }: ServerHeaderProps) => {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-};
+}
