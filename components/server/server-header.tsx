@@ -19,6 +19,7 @@ import {
   Users,
 } from "lucide-react";
 import { useModal } from "@/hooks/use-modal-store";
+import { Button } from "../ui/button";
 
 interface ServerHeaderProps {
   server: ServerWithMembersWithProfiles;
@@ -33,10 +34,10 @@ export const ServerHeader = ({ server, role }: ServerHeaderProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <button className="w-full text-md font-semibold px-3 flex items-center h-12 border-neutral-200 dark:border-neutral-800 border-b-2 hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition">
+        <div className="w-full text-md font-semibold px-3 flex items-center h-12 border-neutral-200 dark:border-neutral-800 border-b-2 hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition">
           {server.name}
           <ChevronDown className="h-5 w-5 ml-auto" />
-        </button>
+        </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56 text-xs font-medium text-black dark:text-neutral-400 space-y-[2px]">
         {isModerator && (
@@ -65,13 +66,13 @@ export const ServerHeader = ({ server, role }: ServerHeaderProps) => {
         )}
         {isModerator && <DropdownMenuSeparator />}
         {isAdmin && (
-          <DropdownMenuItem className="flex text-rose-500 items-center px-3 py-2 text-sm cursor-pointer">
+          <DropdownMenuItem onClick={() => onOpen('deleteServer', {server})} className="flex text-rose-500 items-center px-3 py-2 text-sm cursor-pointer">
             Delete Server
             <Trash className="h-4 w-4 ml-auto" />
           </DropdownMenuItem>
         )}
         {!isAdmin && (
-          <DropdownMenuItem className="flex items-center text-rose-500 px-3 py-2 text-sm cursor-pointer">
+          <DropdownMenuItem onClick={() => onOpen('leaveServer', {server})}  className="flex items-center text-rose-500 px-3 py-2 text-sm cursor-pointer">
             Leave Server
             <LogOut className="h-4 w-4 ml-auto" />
           </DropdownMenuItem>
