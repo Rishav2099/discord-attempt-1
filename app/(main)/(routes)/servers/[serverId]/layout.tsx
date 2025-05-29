@@ -38,7 +38,7 @@ const layout = async ({
       <div className="w-60 hidden z-20 md:left-[65px] flex-col inset-y-0 fixed md:flex ">
         <ServerSidebar serverId={serverId} />
       </div>
-      <main className="md:pl-60">{children}</main>
+      <main className="md:pl-56">{children}</main>
     </div>
   );
 };
