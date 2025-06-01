@@ -65,7 +65,7 @@ export const DeleteMessageModal = () => {
               disabled={isLoading}
               variant="primary"
             >
-              Leave
+              Delete
             </Button>
           </div>
         </DialogFooter>
